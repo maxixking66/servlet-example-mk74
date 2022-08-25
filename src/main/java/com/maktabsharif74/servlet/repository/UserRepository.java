@@ -5,4 +5,6 @@ import com.maktabsharif74.servlet.domain.User;
 
 public interface UserRepository extends BaseRepository<User, Long> {
     boolean existsByUsername(String username);
+
+    User findByUsername(String username);
 }

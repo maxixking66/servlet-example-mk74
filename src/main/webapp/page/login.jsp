@@ -13,7 +13,7 @@
 <body>
 <!-- partial:index.partial.html -->
 <div class="login-form">
-    <form>
+    <form action="/login" method="post">
         <h1>Login</h1>
         <%--        first approach--%>
         <%--<%
@@ -33,12 +33,16 @@
             }
         %>
 
+        <c:if test="${loginFailed}">
+            <h3 style="color: red">Wrong username or password!!!</h3>
+        </c:if>
+
         <div class="content">
             <div class="input-field">
-                <input type="email" placeholder="Email" autocomplete="nope">
+                <input type="text" placeholder="enter username" autocomplete="off" name="username">
             </div>
             <div class="input-field">
-                <input type="password" placeholder="Password" autocomplete="new-password">
+                <input type="password" placeholder="enter Password" autocomplete="off" name="password">
             </div>
             <a href="/register">Register</a>
         </div>

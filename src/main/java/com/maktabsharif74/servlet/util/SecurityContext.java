@@ -4,21 +4,17 @@ import com.maktabsharif74.servlet.domain.User;
 
 public class SecurityContext {
 
-    private static User currentUser;
-
-    private SecurityContext() {
-
-    }
+    private final static ThreadLocal<User> currentUserThread = new ThreadLocal<>();
 
     public static User getCurrentUser() {
-        return currentUser;
+        return currentUserThread.get();
     }
 
     public static void setCurrentUser(User user) {
-        currentUser = user;
+        currentUserThread.set(user);
     }
 
-    public static void logout() {
-        currentUser = null;
+    public static void clear() {
+        currentUserThread.remove();
     }
 }

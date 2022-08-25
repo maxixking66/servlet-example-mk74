@@ -3,6 +3,7 @@ package com.maktabsharif74.servlet.web;
 import com.maktabsharif74.servlet.domain.User;
 import com.maktabsharif74.servlet.service.UserService;
 import com.maktabsharif74.servlet.util.ApplicationContext;
+import com.maktabsharif74.servlet.util.SecurityContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +27,7 @@ public class UserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        User currentUser = (User) request.getSession().getAttribute("currentUser");
+        /*User currentUser = (User) request.getSession().getAttribute("currentUser");
 
         if (currentUser == null) {
             response.sendRedirect("/login");
@@ -41,6 +42,19 @@ public class UserServlet extends HttpServlet {
             } catch (NumberFormatException e) {
                 response.sendRedirect("/users");
             }
+        }*/
+
+
+        String userId = request.getParameter("userId");
+
+        try {
+            Long id = Long.valueOf(userId);
+            User user = userService.findById(id);
+            request.setAttribute("user", user);
+            request.setAttribute("currentUser", SecurityContext.getCurrentUser());
+            request.getRequestDispatcher(path).forward(request, response);
+        } catch (NumberFormatException e) {
+            response.sendRedirect("/users");
         }
 
 

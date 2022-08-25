@@ -10,4 +10,9 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long, UserRepository>
     public UserServiceImpl(UserRepository repository) {
         super(repository);
     }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return repository.existsByUsername(username);
+    }
 }

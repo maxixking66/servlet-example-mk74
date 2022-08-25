@@ -16,4 +16,11 @@ public class UserRepositoryImpl extends BaseRepositoryImpl<User, Long> implement
     public Class<User> getEntityClass() {
         return User.class;
     }
+
+    @Override
+    public boolean existsByUsername(String username) {
+        return entityManager.createQuery(
+                "select count(id) from User u where u.username = :username", Long.class
+        ).setParameter("username", username).getSingleResult() != 0;
+    }
 }

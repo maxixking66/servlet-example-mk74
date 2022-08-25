@@ -35,4 +35,10 @@ public class User extends BaseEntity<Long> {
 
     @Column(name = PASSWORD, nullable = false)
     private String password;
+
+    public User(Long id, String firstName, String username) {
+        super(id);
+        this.firstName = firstName;
+        this.username = username;
+    }
 }

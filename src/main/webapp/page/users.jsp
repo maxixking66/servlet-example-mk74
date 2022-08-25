@@ -15,6 +15,7 @@
 
 </head>
 <body>
+<h1>welcome - ${currentUser.firstName}</h1>
 <table class="zui-table">
     <thead>
     <tr>

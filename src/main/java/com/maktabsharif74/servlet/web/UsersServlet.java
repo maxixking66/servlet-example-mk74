@@ -26,9 +26,19 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        List<User> users = userService.findAll();
-        request.setAttribute("users", users);
-        request.getRequestDispatcher(path).forward(request, response);
+
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
+
+        if (currentUser == null) {
+            response.sendRedirect("/login");
+        } else {
+            List<User> users = userService.findAll();
+            request.setAttribute("users", users);
+            request.setAttribute("currentUser", currentUser);
+            request.getRequestDispatcher(path).forward(request, response);
+        }
+
+
     }
 
 }

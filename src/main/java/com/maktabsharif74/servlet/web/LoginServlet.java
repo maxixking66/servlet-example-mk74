@@ -34,6 +34,8 @@ public class LoginServlet extends HttpServlet {
 
         User user = userService.findByUsername(username);
         if (user != null && password.equals(user.getPassword())) {
+            request.getSession().setAttribute("currentUser", user);
+            request.setAttribute("currentUser", user);
             response.sendRedirect("/users");
         } else {
             request.setAttribute("loginFailed", true);

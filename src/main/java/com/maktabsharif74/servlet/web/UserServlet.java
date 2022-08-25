@@ -25,16 +25,24 @@ public class UserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
-        String userId = request.getParameter("userId");
 
-        try {
-            Long id = Long.valueOf(userId);
-            User user = userService.findById(id);
-            request.setAttribute("user", user);
-            request.getRequestDispatcher(path).forward(request, response);
-        } catch (NumberFormatException e) {
-            response.sendRedirect("/users");
+        User currentUser = (User) request.getSession().getAttribute("currentUser");
+
+        if (currentUser == null) {
+            response.sendRedirect("/login");
+        } else {
+            String userId = request.getParameter("userId");
+
+            try {
+                Long id = Long.valueOf(userId);
+                User user = userService.findById(id);
+                request.setAttribute("user", user);
+                request.getRequestDispatcher(path).forward(request, response);
+            } catch (NumberFormatException e) {
+                response.sendRedirect("/users");
+            }
         }
+
 
     }
 

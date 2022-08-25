@@ -1,10 +1,8 @@
 package com.maktabsharif74.servlet.web;
 
-import com.maktabsharif74.servlet.domain.User;
 import com.maktabsharif74.servlet.service.UserService;
 import com.maktabsharif74.servlet.util.ApplicationContext;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,20 +25,20 @@ public class LoginServlet extends HttpServlet {
         resp.sendRedirect(path);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        User user = userService.findByUsername(username);
-        if (user != null && password.equals(user.getPassword())) {
-            request.getSession().setAttribute("currentUser", user);
-            request.setAttribute("currentUser", user);
-            response.sendRedirect("/users");
-        } else {
-            request.setAttribute("loginFailed", true);
-            request.getRequestDispatcher(path).forward(request, response);
-        }
-
-    }
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        String username = request.getParameter("username");
+//        String password = request.getParameter("password");
+//
+//        User user = userService.findByUsername(username);
+//        if (user != null && password.equals(user.getPassword())) {
+//            request.getSession().setAttribute("currentUser", user);
+//            request.setAttribute("currentUser", user);
+//            response.sendRedirect("/users");
+//        } else {
+//            request.setAttribute("loginFailed", true);
+//            request.getRequestDispatcher(path).forward(request, response);
+//        }
+//
+//    }
 }

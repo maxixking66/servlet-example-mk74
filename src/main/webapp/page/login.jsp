@@ -15,29 +15,31 @@
 <div class="login-form">
     <form action="/login" method="post">
         <h1>Login</h1>
-        <%--        first approach--%>
-        <%--<%
-            Boolean successFullRegister = (Boolean) request.getAttribute("successFullRegister");
-            if (successFullRegister != null && successFullRegister) {
-        %>
-        <h3 style="color: red">Register Complete!!!</h3>
-        <%
-            }
-        %>--%>
-
-        <%--        second approach--%>
-        <%
-            Boolean successFullRegister = (Boolean) request.getAttribute("successFullRegister");
-            if (successFullRegister != null && successFullRegister) {
-                out.print("<h3 style=\"color: red\">Register Complete!!!</h3>");
-            }
-        %>
-
-        <c:if test="${loginFailed}">
-            <h3 style="color: red">Wrong username or password!!!</h3>
-        </c:if>
 
         <div class="content">
+
+            <%--        first approach--%>
+            <%--<%
+                Boolean successFullRegister = (Boolean) request.getAttribute("successFullRegister");
+                if (successFullRegister != null && successFullRegister) {
+            %>
+            <h3 style="color: red">Register Complete!!!</h3>
+            <%
+                }
+            %>--%>
+
+            <%--        second approach--%>
+            <%
+                Boolean successFullRegister = (Boolean) request.getAttribute("successFullRegister");
+                if (successFullRegister != null && successFullRegister) {
+                    out.print("<h3 style=\"color: red\">Register Complete!!!</h3>");
+                }
+            %>
+
+            <c:if test="${loginFailed}">
+                <h3 style="color: red">Wrong username or password!!!</h3>
+            </c:if>
+
             <div class="input-field">
                 <input type="text" placeholder="enter username" autocomplete="off" name="username">
             </div>

@@ -19,12 +19,21 @@
             <div class="input-field">
                 <input type="text" placeholder="enter firstName" autocomplete="off" name="firstName" required>
             </div>
+            <c:if test="${duplicateUsername}">
+                <span style="color: red">` ${user.firstName} ` </span>
+            </c:if>
             <div class="input-field">
                 <input type="text" placeholder="enter lastName" autocomplete="off" name="lastName" required>
             </div>
+            <c:if test="${duplicateUsername}">
+                <span style="color: red">` ${user.lastName} ` </span>
+            </c:if>
             <div class="input-field">
                 <input type="text" placeholder="enter username" autocomplete="off" name="username" required>
             </div>
+            <c:if test="${duplicateUsername}">
+                <span style="color: red">Username ` ${user.username} ` already taken</span>
+            </c:if>
             <div class="input-field">
                 <input type="password" placeholder="enter Password" autocomplete="off" name="password" required>
             </div>
